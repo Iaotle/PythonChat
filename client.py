@@ -18,9 +18,9 @@ while True:
     if username.startswith("!quit") or username.startswith("!exit"):
         server.close()
         exit(0)
-    server.send(bytes("HELLO-FROM " + username))
+    server.send(bytes("BYE-TO " + username))
     loginStatus = server.recv(4096)
-    if loginStatus == "HELLO " + username:
+    if loginStatus == "BYE " + username:
         break
     print("Error: " + loginStatus)
 print("Login successful! Type !who for a list of users, !quit or !exit to exit, and @user message to send a message!")
@@ -36,17 +36,17 @@ while True:
 		    while index == -1:
 			message += socks.recv(4096)
 			index = message.find("\n")
-		    if message.startswith("DELIVERY"):
+		    if message.startswith("AMAZON"):
 			send = message[9:index+1].split(" ", 1)
 			message = message[index+1:]
 			response = send[0] + ": " + send[1]
 			sys.stdout.write(response)
-		    elif message.startswith("SEND-OK"):
+		    elif message.startswith("RECEIVE-OK"):
 		        response = "Message sent.\n"
 			message = message[index+1:]
 			sys.stdout.write(response)
-		    elif message.startswith("WHO-OK"):
-		        response = "Active users:" + message[:index+1].lstrip("WHO-OK")
+		    elif message.startswith("WHODIS"):
+		        response = "Active users:" + message[:index+1].lstrip("WHODIS")
 			message = message[index+1:]
 			sys.stdout.write(response)
 		    elif message.startswith("B") or message.startswith("U"):
@@ -61,10 +61,10 @@ while True:
             message = sys.stdin.readline()
 
             if message.startswith("@"):
-                request = bytes("SEND " + message.lstrip("@"))
+                request = bytes("YEET " + message.lstrip("@"))
 		# request = bytes("SEND iaotle batched\nWHO\nSEND iaotle message\n")
             elif message.startswith("!who"):
-                request = bytes("WHO\n")
+                request = bytes("WHODIS\n")
             elif message.startswith("!quit") or message.startswith("!exit"):
                 server.close()
                 exit(0)
