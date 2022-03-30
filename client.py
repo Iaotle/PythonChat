@@ -45,8 +45,8 @@ while True:
 		        response = "Message sent.\n"
 			message = message[index+1:]
 			sys.stdout.write(response)
-		    elif message.startswith("WHODIS"):
-		        response = "Active users:" + message[:index+1].lstrip("WHODIS")
+		    elif message.startswith("DISME"):
+		        response = "Active users:" + message[:index+1].lstrip("DISME")
 			message = message[index+1:]
 			sys.stdout.write(response)
 		    elif message.startswith("B") or message.startswith("U"):
