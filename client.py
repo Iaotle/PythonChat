@@ -3,7 +3,7 @@ import socket
 import sys
 import threading
 
-server_address = ('18.195.107.195', 5378) # for vu server
+
 server_address = ('localhost', 5378)  # for local server
 # Log in:
 while True:
@@ -61,8 +61,8 @@ while True:
             message = sys.stdin.readline()
 
             if message.startswith("@"):
-                # request = bytes("SEND " + message.lstrip("@"))
-		request = bytes("SEND iaotle batched\nWHO\nSEND iaotle message\n")
+                request = bytes("SEND " + message.lstrip("@"))
+		# request = bytes("SEND iaotle batched\nWHO\nSEND iaotle message\n")
             elif message.startswith("!who"):
                 request = bytes("WHO\n")
             elif message.startswith("!quit") or message.startswith("!exit"):
